@@ -9,13 +9,18 @@ func TestHello(t *testing.T){
 		}
 	}
 	t.Run("saying hello with arguments", func(t *testing.T){
-		got := Hello("Chris")
+		got := Hello("Chris", "")
 		want := "Hello, Chris"
 		assertCorrectMessage(t, got, want)
 	})
 	t.Run("saying `Hello, world` in case of absence of arguments", func(t *testing.T){
-		got := Hello("")
+		got := Hello("", "")
 		want := "Hello, world"
+		assertCorrectMessage(t, got, want)
+	})
+	t.Run("in spanish", func(t *testing.T){
+		got := Hello("Thibault", "Spanish")
+		want := "Hola, Thibault"
 		assertCorrectMessage(t, got, want)
 	})
 }
