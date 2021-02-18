@@ -15,17 +15,20 @@ func TestPerimeter(t *testing.T) {
 
 func TestArea(t *testing.T) {
 	areaTests := []struct {
+		name string
 		shape Shape
 		want float64
 	}{
-		{Rectangle{20.0, 30.0}, 600.0},
-		{Circle{10}, math.Pi * 100},
+		{name: "Rectangle", shape: Rectangle{20.0, 30.0},want: 600.0},
+		{name: "Circle", shape: Circle{10},want: math.Pi * 100},
 	}
 
 	for _, testcase := range areaTests {
-		got := testcase.shape.Area()
-		if got != testcase.want {
-			t.Errorf("got %g, want %g", got, testcase.want)
-		}
+		t.Run(testcase.name, func(t *testing.T) {
+			got := testcase.shape.Area()
+			if got != testcase.want {
+				t.Errorf("%#v: got %g, want %g", testcase.shape, got, testcase.want)
+			}
+		})
 	}
 }
