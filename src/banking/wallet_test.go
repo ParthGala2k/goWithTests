@@ -13,8 +13,10 @@ func TestWallet(t *testing.T) {
 
 	t.Run("Withdraw:", func (t *testing.T) {
 		wallet := Wallet{balance: Bitcoin(10)}
-		wallet.Withdraw(Bitcoin(10))
-
+		err := wallet.Withdraw(Bitcoin(10))
+		if err != nil {
+			t.Fatal("Didn't want an error, got one.")
+		}
 		assertBalance(t, wallet, Bitcoin(0))
 	})
 
