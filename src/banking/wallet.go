@@ -25,7 +25,7 @@ func (w *Wallet) Deposit(amount Bitcoin) {
 
 func (w *Wallet) Withdraw(amount Bitcoin) error {
 	if amount > w.Balance() {
-		return errors.New("Amount needed exceeds balance. Aborting!")
+		return errors.New("Insufficient funds, cannot withdraw. Aborting")
 	}
 
 	w.balance -= amount
